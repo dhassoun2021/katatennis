@@ -1,8 +1,8 @@
-package com.tennis.kata;
+package com.tennis.kata.util;
 
 public final class PlayerUtil {
 
-    private PlayerUtil () {
+    private PlayerUtil() {
 
     }
 
