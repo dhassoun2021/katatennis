@@ -17,11 +17,12 @@ public class Game {
     }
 
     public void onPlayerWin(String playerName) {
-        Player winner = players.get(playerName);
-        String oppositePlayerName = PlayerUtil.opposite(playerName);
-        Player other = players.get(oppositePlayerName);
-        Player playerScoreResult = scoreEvaluator.evaluate(playerName, winner, other);
+        Player playerScoreResult = scoreEvaluator.evaluate(playerName, this);
         players.put(playerScoreResult.getName(), playerScoreResult);
+    }
+
+    public Map<String, Player> getPlayers() {
+        return players;
     }
 }
 

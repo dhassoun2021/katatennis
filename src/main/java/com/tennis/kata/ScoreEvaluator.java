@@ -3,7 +3,9 @@ package com.tennis.kata;
 public class ScoreEvaluator {
 
 
-    public Player evaluate(String winnerName, Player winner, Player other) {
+    public Player evaluate(String winnerName, Game game) {
+        Player winner = game.getPlayers().get(winnerName);
+        Player other = game.getPlayers().get(PlayerUtil.opposite(winnerName));
         switch (winner.getScore()) {
             case ZERO:
                 return Player.of(winnerName, Score.FIFTEEN);
@@ -18,6 +20,7 @@ public class ScoreEvaluator {
                 if (other.getScore() == Score.ADVANTAGE) {
                     return Player.of(other.getName(), Score.FORTY);
                 }
+            case ADVANTAGE:
                 return Player.of(winnerName, Score.WIN);
         }
         throw new IllegalStateException("Enumeration " + winner.getScore() + "is not handled");
