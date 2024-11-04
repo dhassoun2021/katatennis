@@ -3,7 +3,7 @@ package com.tennis.kata.display;
 import com.tennis.kata.Game;
 import com.tennis.kata.Player;
 
-public class GameTextDisplayer implements GameDisplayer {
+public class GameTextFormater implements GameFormater {
     @Override
     public String display(Game game) {
         Player playerA = game.getPlayer("A");
