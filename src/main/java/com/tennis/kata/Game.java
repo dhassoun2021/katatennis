@@ -1,7 +1,8 @@
 package com.tennis.kata;
 
-import com.tennis.kata.display.GameFormater;
+import com.tennis.kata.display.GameStandardOutpoutWriter;
 import com.tennis.kata.display.GameTextFormater;
+import com.tennis.kata.display.GameWriter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,10 +13,10 @@ public class Game {
 
     private final Map<String, Player> players = new HashMap<>();
     private final ScoreEvaluator scoreEvaluator;
-    private final GameFormater displayer;
+    private final GameWriter gameWriter;
 
-    public Game(GameFormater displayer) {
-        this.displayer = displayer;
+    public Game(GameWriter gameWriter) {
+        this.gameWriter = gameWriter;
         Player playerA = Player.of("A");
         Player playerB = Player.of("B");
         players.put(playerA.getName(), playerA);
@@ -23,7 +24,7 @@ public class Game {
         scoreEvaluator = new ScoreEvaluator();
     }
     protected Game(Player playerA ,Player playerB) {
-        this.displayer = new GameTextFormater();
+        this.gameWriter = new GameStandardOutpoutWriter(new GameTextFormater());
         players.put(playerA.getName(), playerA);
         players.put(playerB.getName(), playerB);
         scoreEvaluator = new ScoreEvaluator();
@@ -45,7 +46,7 @@ public class Game {
     protected void onPlayerWin(String playerName) {
         Player playerScoreResult = scoreEvaluator.evaluate(playerName, this);
         updateScore(playerScoreResult.getName(), playerScoreResult.getScore());
-        System.out.println(displayer.display(this));
+        gameWriter.write(this);
     }
 
     public Map<String, Player> getPlayers() {

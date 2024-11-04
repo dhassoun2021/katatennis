@@ -5,7 +5,7 @@ import com.tennis.kata.Player;
 
 public class GameTextFormater implements GameFormater {
     @Override
-    public String display(Game game) {
+    public String format(Game game) {
         Player playerA = game.getPlayer("A");
         Player playerB = game.getPlayer("B");
         if (playerA.hasWon()) {
