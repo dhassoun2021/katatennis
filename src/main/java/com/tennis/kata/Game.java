@@ -27,6 +27,10 @@ public class Game {
         //check command validity
        char [] chars = command.toCharArray();
        for (char c : chars) {
+           if (hasFinished()) {
+               //TODO add warn log
+               return;
+           }
            String playerWin = String.valueOf(c);
            onPlayerWin(playerWin);
        }
@@ -34,7 +38,7 @@ public class Game {
 
     protected void onPlayerWin(String playerName) {
         Player playerScoreResult = scoreEvaluator.evaluate(playerName, this);
-        players.put(playerScoreResult.getName(), playerScoreResult);
+        updateScore(playerScoreResult.getName(), playerScoreResult.getScore());
     }
 
     public Map<String, Player> getPlayers() {
@@ -43,6 +47,15 @@ public class Game {
 
     public Player getPlayer (String name) {
         return players.get(name);
+    }
+
+    public void updateScore (String playerName, Score score) {
+        Player player = getPlayer(playerName);
+        player.setScore(score);
+    }
+
+    public boolean hasFinished () {
+        return players.values().stream().anyMatch(Player::hasWon);
     }
 }
 

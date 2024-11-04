@@ -36,6 +36,10 @@ public class Player {
         this.score = score;
     }
 
+    public boolean hasWon() {
+        return score == Score.WIN;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
