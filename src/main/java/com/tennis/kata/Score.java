@@ -7,11 +7,11 @@ public enum Score {
     THIRTY("30"),
     FORTY("40"),
     ADVANTAGE("A"),
-    WIN("W");
+    WIN("wins the game");
 
-    private String value;
+    private final String value;
 
-    private Score(String value) {
+    Score(String value) {
         this.value = value;
     }
 

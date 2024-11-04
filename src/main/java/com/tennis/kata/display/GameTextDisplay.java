@@ -1,0 +1,17 @@
+package com.tennis.kata.display;
+
+import com.tennis.kata.Game;
+import com.tennis.kata.Player;
+
+public class GameTextDisplay implements GameDisplay{
+    @Override
+    public String display(Game game) {
+        Player playerA = game.getPlayer("A");
+        Player playerB = game.getPlayer("B");
+        return "Player A:" +
+                playerA.getScore().getValue() +
+                "/" +
+                "Player B:" +
+                playerB.getScore().getValue();
+    }
+}
