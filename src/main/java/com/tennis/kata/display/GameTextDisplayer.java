@@ -3,15 +3,22 @@ package com.tennis.kata.display;
 import com.tennis.kata.Game;
 import com.tennis.kata.Player;
 
-public class GameTextDisplay implements GameDisplay{
+public class GameTextDisplayer implements GameDisplayer {
     @Override
     public String display(Game game) {
         Player playerA = game.getPlayer("A");
         Player playerB = game.getPlayer("B");
-        return "Player A:" +
+        if (playerA.hasWon()) {
+            return "Player A wins the game";
+        }
+        if (playerB.hasWon()) {
+            return "Player B wins the game";
+        }
+
+        return "Player A: " +
                 playerA.getScore().getValue() +
-                "/" +
-                "Player B:" +
+                " / " +
+                "Player B: " +
                 playerB.getScore().getValue();
     }
 }
