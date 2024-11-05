@@ -3,16 +3,16 @@ package com.tennis.kata;
 import java.util.Objects;
 
 public class Player {
-    private final String name;
+    private final String id;
     private Score score;
 
-    private Player(String name) {
-        this.name = name;
+    private Player(String id) {
+        this.id = id;
         this.score = Score.ZERO;
     }
 
-    private Player (String name, Score score) {
-        this.name = name;
+    private Player (String id, Score score) {
+        this.id = id;
         this.score = score;
     }
 
@@ -24,8 +24,8 @@ public class Player {
         return new Player(name, score);
     }
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
     public Score getScore() {
@@ -45,11 +45,11 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return Objects.equals(name, player.name) && Objects.equals(score, player.score);
+        return Objects.equals(id, player.id) && Objects.equals(score, player.score);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, score);
+        return Objects.hash(id, score);
     }
 }

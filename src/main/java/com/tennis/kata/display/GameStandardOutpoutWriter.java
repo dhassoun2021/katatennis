@@ -6,6 +6,9 @@ public class GameStandardOutpoutWriter implements GameWriter{
 
     private final GameFormater gameFormater;
 
+    public GameStandardOutpoutWriter () {
+        gameFormater = new GameTextFormater();
+    }
     public GameStandardOutpoutWriter (GameFormater gameFormater) {
         this.gameFormater = gameFormater;
     }

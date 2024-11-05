@@ -20,7 +20,7 @@ public class ScoreEvaluator {
                     return Player.of(winnerName, Score.ADVANTAGE);
                 }
                 if (other.getScore() == Score.ADVANTAGE) {
-                    return Player.of(other.getName(), Score.FORTY);
+                    return Player.of(other.getId(), Score.FORTY);
                 }
             case ADVANTAGE:
                 return Player.of(winnerName, Score.WIN);

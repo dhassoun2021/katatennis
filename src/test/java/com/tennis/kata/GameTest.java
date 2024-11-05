@@ -1,7 +1,5 @@
 package com.tennis.kata;
 
-import com.tennis.kata.display.GameStandardOutpoutWriter;
-import com.tennis.kata.display.GameTextFormater;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,7 +7,7 @@ public class GameTest {
 
     @Test
     public void scenarioWithPlayerA_40AndPlayerB_30() {
-        Game game = new Game(new GameStandardOutpoutWriter(new GameTextFormater()));
+        Game game = new Game();
         game.play("ABAA");
         Player playerA = game.getPlayer("A");
         Player playerB = game.getPlayer("B");
@@ -19,7 +17,7 @@ public class GameTest {
 
     @Test
     public void scenarioWithPlayerA_WonAndPlayerB_30() {
-        Game game = new Game(new GameStandardOutpoutWriter(new GameTextFormater()));
+        Game game = new Game();
         game.play("ABABAA");
         Player playerA = game.getPlayer("A");
         Player playerB = game.getPlayer("B");
@@ -29,7 +27,7 @@ public class GameTest {
 
     @Test
     public void scenarioWithPlayerA_WonAndPlayerB_30ShouldReturnSameScoreWhenAnotherCommand() {
-        Game game = new Game(new GameStandardOutpoutWriter(new GameTextFormater()));
+        Game game = new Game();
         game.play("ABABAAB");
         Player playerA = game.getPlayer("A");
         Player playerB = game.getPlayer("B");
@@ -39,7 +37,7 @@ public class GameTest {
 
     @Test
     public void scenarioWithPlayerA_40AndPlayerB_40() {
-        Game game = new Game(new GameStandardOutpoutWriter(new GameTextFormater()));
+        Game game = new Game();
         game.play("ABABABAB");
         Player playerA = game.getPlayer("A");
         Player playerB = game.getPlayer("B");
@@ -48,7 +46,7 @@ public class GameTest {
     }
     @Test
     public void scenarioWithPlayerA_40AndPlayerB_A() {
-        Game game = new Game(new GameStandardOutpoutWriter(new GameTextFormater()));
+        Game game = new Game();
         game.play("ABABABABB");
         Player playerA = game.getPlayer("A");
         Player playerB = game.getPlayer("B");
@@ -58,7 +56,7 @@ public class GameTest {
 
     @Test
     public void scenarioWithPlayerA_0AndPlayerB_0() {
-        Game game = new Game(new GameStandardOutpoutWriter(new GameTextFormater()));
+        Game game = new Game();
         Player playerA = game.getPlayer("A");
         Player playerB = game.getPlayer("B");
         Assert.assertEquals(Score.ZERO, playerA.getScore());
