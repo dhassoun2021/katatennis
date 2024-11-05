@@ -6,6 +6,24 @@ import org.junit.Test;
 public class GameTest {
 
     @Test
+    public void scenarioWithCommandNull() {
+        Game game = new Game();
+        game.play(null);
+    }
+
+    @Test
+    public void scenarioWithCommandEmpty() {
+        Game game = new Game();
+        game.play("");
+    }
+
+    @Test
+    public void scenarioWithInvalidCommand() {
+        Game game = new Game();
+        game.play("ABCAB");
+    }
+
+    @Test
     public void scenarioWithPlayerA_40AndPlayerB_30() {
         Game game = new Game();
         game.play("ABAA");

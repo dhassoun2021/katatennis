@@ -3,6 +3,7 @@ package com.tennis.kata;
 import com.tennis.kata.display.GameStandardOutpoutWriter;
 import com.tennis.kata.display.GameTextFormater;
 import com.tennis.kata.display.GameWriter;
+import com.tennis.kata.validator.CommandValidator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +42,7 @@ public class Game {
     }
 
     public void play(String command) {
-        //check command validity
+        CommandValidator.validate(command);
        char [] chars = command.toCharArray();
        for (char c : chars) {
            if (isFinished()) {
