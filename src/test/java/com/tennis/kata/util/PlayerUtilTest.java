@@ -7,13 +7,13 @@ public class PlayerUtilTest {
 
     @Test
     public void shouldReturnBWhenCurrentPlayerIsA () {
-       String result = PlayerUtil.opposite("A");
+       String result = PlayerUtil.opponent("A");
         Assert.assertEquals("B", result);
     }
 
     @Test
     public void shouldReturnAWhenCurrentPlayerIsB () {
-        String result = PlayerUtil.opposite("B");
+        String result = PlayerUtil.opponent("B");
         Assert.assertEquals("A", result);
     }
 }

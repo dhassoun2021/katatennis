@@ -6,10 +6,13 @@ public final class PlayerUtil {
 
     }
 
-    public static String opposite (String playerName) {
-        if ("A".equals(playerName)) {
+    public static String opponent (String playerId) {
+        if ("A".equals(playerId)) {
             return "B";
         }
-        return "A";
+        if ("B".equals(playerId)) {
+            return "A";
+        }
+        throw new IllegalArgumentException("Value " + playerId + "is not authorized");
     }
 }

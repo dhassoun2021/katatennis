@@ -6,8 +6,8 @@ public class ScoreEvaluator {
 
 
     public Player evaluate(String winnerName, Game game) {
-        Player winner = game.getPlayers().get(winnerName);
-        Player other = game.getPlayers().get(PlayerUtil.opposite(winnerName));
+        Player winner = game.getPlayer(winnerName);
+        Player opponent = game.getPlayer(PlayerUtil.opponent(winnerName));
         switch (winner.getScore()) {
             case ZERO:
                 return Player.of(winnerName, Score.FIFTEEN);
@@ -16,11 +16,11 @@ public class ScoreEvaluator {
             case THIRTY:
                 return Player.of(winnerName, Score.FORTY);
             case FORTY:
-                if (other.getScore() == Score.FORTY) {
+                if (opponent.getScore() == Score.FORTY) {
                     return Player.of(winnerName, Score.ADVANTAGE);
                 }
-                if (other.getScore() == Score.ADVANTAGE) {
-                    return Player.of(other.getId(), Score.FORTY);
+                if (opponent.getScore() == Score.ADVANTAGE) {
+                    return Player.of(opponent.getId(), Score.FORTY);
                 }
             case ADVANTAGE:
                 return Player.of(winnerName, Score.WIN);

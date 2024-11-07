@@ -5,25 +5,25 @@ import org.junit.Test;
 
 public class GameTest {
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void scenarioWithCommandNull() {
         Game game = new Game();
         game.play(null);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void scenarioWithCommandEmpty() {
         Game game = new Game();
         game.play("");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void scenarioWithCommandBlank() {
         Game game = new Game();
         game.play("");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void scenarioWithInvalidCommand() {
         Game game = new Game();
         game.play("ABCAB");

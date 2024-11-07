@@ -5,40 +5,33 @@ import com.tennis.kata.display.GameTextFormater;
 import com.tennis.kata.display.GameWriter;
 import com.tennis.kata.validator.CommandValidator;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Objects;
 
 public class Game {
-
-
-
-    private final Map<String, Player> players = new HashMap<>();
+    private final Player playerA;
+    private final Player playerB;
     private final ScoreEvaluator scoreEvaluator;
     private final GameWriter gameWriter;
 
 
     public Game () {
         this.gameWriter = new GameStandardOutpoutWriter();
-        Player playerA = Player.of("A");
-        Player playerB = Player.of("B");
-        players.put(playerA.getId(), playerA);
-        players.put(playerB.getId(), playerB);
+        this.playerA = Player.of("A");
+        this.playerB = Player.of("B");
         scoreEvaluator = new ScoreEvaluator();
     }
     public Game(GameWriter gameWriter) {
         this.gameWriter = gameWriter;
-        Player playerA = Player.of("A");
-        Player playerB = Player.of("B");
-        players.put(playerA.getId(), playerA);
-        players.put(playerB.getId(), playerB);
+        this.playerA = Player.of("A");
+        this.playerB = Player.of("B");
         scoreEvaluator = new ScoreEvaluator();
     }
 
     protected Game(Player playerA ,Player playerB) {
         this.gameWriter = new GameStandardOutpoutWriter(new GameTextFormater());
-        players.put(playerA.getId(), playerA);
-        players.put(playerB.getId(), playerB);
         scoreEvaluator = new ScoreEvaluator();
+        this.playerA = playerA;
+        this.playerB = playerB;
     }
 
     public void play(String command) {
@@ -60,12 +53,14 @@ public class Game {
         gameWriter.write(this);
     }
 
-    public Map<String, Player> getPlayers() {
-        return players;
-    }
-
-    public Player getPlayer (String name) {
-        return players.get(name);
+    public Player getPlayer (String id) {
+        if (Objects.equals(id, playerA.getId())) {
+            return playerA;
+        }
+        if (Objects.equals(id, playerB.getId())) {
+            return playerB;
+        }
+        throw new IllegalStateException("No players found with id "+ id);
     }
 
     public void updateScore (String playerName, Score score) {
@@ -74,7 +69,7 @@ public class Game {
     }
 
     public boolean isFinished () {
-        return players.values().stream().anyMatch(Player::hasWon);
+        return (playerA.hasWon() || playerB.hasWon());
     }
 }
 
