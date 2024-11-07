@@ -18,6 +18,12 @@ public class GameTest {
     }
 
     @Test
+    public void scenarioWithCommandBlank() {
+        Game game = new Game();
+        game.play("");
+    }
+
+    @Test
     public void scenarioWithInvalidCommand() {
         Game game = new Game();
         game.play("ABCAB");
