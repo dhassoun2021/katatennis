@@ -12,6 +12,7 @@ public class Game {
     private final Player playerB;
     private final ScoreEvaluator scoreEvaluator;
     private final GameWriter gameWriter;
+    private final CommandValidator commandValidator;
 
 
     public Game () {
@@ -19,25 +20,28 @@ public class Game {
         this.playerA = Player.of("A");
         this.playerB = Player.of("B");
         scoreEvaluator = new ScoreEvaluator();
+        commandValidator = new CommandValidator();
     }
     public Game(GameWriter gameWriter) {
         this.gameWriter = gameWriter;
         this.playerA = Player.of("A");
         this.playerB = Player.of("B");
         scoreEvaluator = new ScoreEvaluator();
+        commandValidator = new CommandValidator();
     }
 
-    protected Game(Player playerA ,Player playerB) {
+    protected Game(Player playerA, Player playerB) {
         this.gameWriter = new GameStandardOutpoutWriter(new GameTextFormater());
         scoreEvaluator = new ScoreEvaluator();
         this.playerA = playerA;
         this.playerB = playerB;
+        commandValidator = new CommandValidator();
     }
 
     public void play(String command) {
-        CommandValidator.validate(command);
-       char [] chars = command.toCharArray();
-       for (char c : chars) {
+        commandValidator.validate(command);
+        char [] chars = command.toCharArray();
+        for (char c : chars) {
            if (isFinished()) {
                //TODO add warn log
                return;
@@ -45,12 +49,6 @@ public class Game {
            String playerWin = String.valueOf(c);
            winPoint(playerWin);
        }
-    }
-
-    protected void winPoint(String playerName) {
-        Player playerScoreResult = scoreEvaluator.evaluate(playerName, this);
-        updateScore(playerScoreResult.getId(), playerScoreResult.getScore());
-        gameWriter.write(this);
     }
 
     public Player getPlayer (String id) {
@@ -63,13 +61,19 @@ public class Game {
         throw new IllegalStateException("No players found with id "+ id);
     }
 
-    public void updateScore (String playerName, Score score) {
-        Player player = getPlayer(playerName);
-        player.setScore(score);
-    }
-
     public boolean isFinished () {
         return (playerA.hasWon() || playerB.hasWon());
+    }
+
+    protected void winPoint(String playerName) {
+        Player playerScoreResult = scoreEvaluator.evaluate(playerName, this);
+        updateScore(playerScoreResult.getId(), playerScoreResult.getScore());
+        gameWriter.write(this);
+    }
+
+    private void updateScore (String playerName, Score score) {
+        Player player = getPlayer(playerName);
+        player.setScore(score);
     }
 }
 

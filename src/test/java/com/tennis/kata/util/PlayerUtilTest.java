@@ -16,4 +16,9 @@ public class PlayerUtilTest {
         String result = PlayerUtil.opponent("B");
         Assert.assertEquals("A", result);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowErrorWhenPlayrIdIsNotAuthorized () {
+        PlayerUtil.opponent("C");
+    }
 }

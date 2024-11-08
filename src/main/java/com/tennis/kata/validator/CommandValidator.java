@@ -1,12 +1,9 @@
 package com.tennis.kata.validator;
 
-public final class CommandValidator {
+public class CommandValidator {
 
-    private CommandValidator () {
 
-    }
-
-    public static void  validate (String command) {
+    public void  validate (String command) {
         if (command == null || command.isBlank()) {
             throw new IllegalArgumentException("Command parameter must not be empty!");
         }

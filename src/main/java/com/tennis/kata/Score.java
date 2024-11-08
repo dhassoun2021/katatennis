@@ -7,7 +7,7 @@ public enum Score {
     THIRTY("30"),
     FORTY("40"),
     ADVANTAGE("A"),
-    WIN("wins the game");
+    WIN("W");
 
     private final String value;
 
